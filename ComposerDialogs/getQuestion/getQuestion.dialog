@@ -1,0 +1,64 @@
+{
+  "$type": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "name": "getAIQuestion",
+    "id": "292537"
+  },
+  "autoEndDialog": "true",
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$type": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog"
+      },
+      "actions": [
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "340603",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-340603()}"
+        },
+        {
+          "$type": "Microsoft.TextInput",
+          "$designer": {
+            "id": "745265",
+            "name": "Text input"
+          },
+          "prompt": "@{bfdprompt-745265()}",
+          "invalidPrompt": "@{bfdinvalidPrompt-745265()}",
+          "maxTurnCount": 3,
+          "property": "user.aiquestion",
+          "alwaysPrompt": false,
+          "allowInterruptions": "true",
+          "outputFormat": "none"
+        },
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "897269",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-897269()}"
+        },
+        {
+          "$type": "Microsoft.QnAMakerDialog",
+          "$designer": {
+            "id": "195199",
+            "name": "Connect to QnA Knowledgebase"
+          },
+          "knowledgeBaseId": "settings.qna.knowledgebaseid",
+          "endpointKey": "settings.qna.endpointkey",
+          "hostname": "settings.qna.hostname",
+          "noAnswer": "Sorry, I did not find an answer. :(",
+          "threshold": 0,
+          "activeLearningCardTitle": "Did you mean:",
+          "cardNoMatchText": "None of the above.",
+          "cardNoMatchResponse": "Thanks for the feedback."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# bfdactivity-992880()
+- Hi i´m a AI bot. I can talk about Artificial Intelligence.
+
+# bfdactivity-340603()
+- Let's fetch the question!
+
+# bfdactivity-410053()
+- I'm sorry. I didn't understand that.
+
+# bfdprompt-745265()
+[Activity
+Text ="What is your AI question?"
+SuggestedActions= help | cancel
+]
+
+# bfdinvalidPrompt-745265()
+- I didn't understand, please give me a value!
+
+# bfdactivity-897269()
+- Ok, let's see the answer to '{user.aiquestion}' 
+
+# bfdactivity-033456()
+- I only can talk about AI. Say 'question' to get started.
+
+# bfdactivity-308065()
+- Cancelling!

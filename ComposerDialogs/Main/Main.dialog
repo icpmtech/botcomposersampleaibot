@@ -1,0 +1,118 @@
+{
+  "$type": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "$designer": {
+      "name": "aiBot",
+      "id": "847462"
+    }
+  },
+  "autoEndDialog": "true",
+  "defaultResultProperty": "dialog.result",
+  "recognizer": "Main.lu",
+  "triggers": [
+    {
+      "$type": "Microsoft.OnConversationUpdateActivity",
+      "$designer": {
+        "id": "376720",
+        "name": "WelcomeTheUser"
+      },
+      "condition": "toLower(turn.Activity.membersAdded[0].name) != 'bot'",
+      "actions": [
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "992880",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-992880()}"
+        }
+      ]
+    },
+    {
+      "$type": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "205852"
+      },
+      "actions": [
+        {
+          "$type": "Microsoft.BeginDialog",
+          "$designer": {
+            "id": "364917",
+            "name": "Begin a new dialog"
+          },
+          "dialog": "getQuestion"
+        }
+      ],
+      "intent": "Question"
+    },
+    {
+      "$type": "Microsoft.OnUnknownIntent",
+      "$designer": {
+        "id": "674880"
+      },
+      "actions": [
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "410053",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-410053()}"
+        }
+      ]
+    },
+    {
+      "$type": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "303465"
+      },
+      "condition": "#Help.Score>=0.5",
+      "actions": [
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "033456",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-033456()}"
+        }
+      ],
+      "intent": "Help"
+    },
+    {
+      "$type": "Microsoft.OnIntent",
+      "$designer": {
+        "id": "328519"
+      },
+      "condition": "#Cancel.Score>=0.5",
+      "actions": [
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "308065",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-308065()}"
+        },
+        {
+          "$type": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "370536",
+            "name": "Send a response"
+          },
+          "activity": "@{bfdactivity-370536()}"
+        },
+        {
+          "$type": "Microsoft.CancelAllDialogs",
+          "$designer": {
+            "id": "452819",
+            "name": "Cancel all dialogs"
+          }
+        }
+      ],
+      "intent": "Cancel"
+    }
+  ],
+  "$schema": "https://raw.githubusercontent.com/microsoft/BotFramework-Composer/stable/Composer/packages/server/schemas/sdk.schema",
+  "generator": "common.lg"
+}
